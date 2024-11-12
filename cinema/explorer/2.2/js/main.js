@@ -204,7 +204,7 @@ textArea.addEventListener("keydown", (event) =>{
 		// add the new query to select options
 		const selectElement = document.getElementById("queries");
 		const newOption = document.createElement("option");
-		newOption.value = String(currentDb.queries.length + 2); 
+		newOption.value = String(currentDb.queries.length); 
 		newOption.text = text;
 		selectElement.appendChild(newOption);
 		selectElement.value = newOption.value;
@@ -217,8 +217,8 @@ const selectElement = document.getElementById("queries");
 selectElement.addEventListener("change", function(){
 	const selectedValue = parseInt(this.value); 
 	// Do something with the selected value
-	console.log("Selected value:", selectedValue);
-	currentDb.getQueryResults(currentDb.queries[selectedValue-1])
+	// console.log("Selected value:", selectedValue);
+	currentDb.getQueryResults(currentDb.queries[selectedValue])
 	pcoord.updateData();
 })
 
@@ -263,13 +263,25 @@ function load() {
 	hasAxisOrdering = false;
 
 	currentDbInfo = cinemaDatabases[d3.select('#database').node().value];
+	// console.log("info", currentDbInfo)
+	d3.select("#queries").selectAll('option').remove(); 
+	d3.select('#queries').selectAll('option')
+		.data(currentDbInfo.query).enter()
+		.append('option')
+		.attr('value', function(d, i){return i;})
+		.text(function(d){
+			// console.log("d", d)
+			return d
+		})
 	//Init Database
 	//Will call doneLoading if succesful, otherwise wil call loadingError
+	// console.log("db_query", currentDbInfo.db_query)
 	currentDb = new CINEMA_COMPONENTS.Database(
 		currentDbInfo.directory,
 		doneLoading,
 		loadingError,
-		currentDbInfo.query);
+		currentDbInfo.init_data_filter,
+	    currentDbInfo.query);
 }
 
 /**
@@ -315,6 +327,8 @@ function doneLoading() {
 	if (currentView == viewType.IMAGESPREAD)
 		view = new CINEMA_COMPONENTS.ImageSpread(d3.select('#viewContainer').node(),currentDb,
 		currentDbInfo.image_measures, currentDbInfo.exclude_dimension);
+	else if (currentView == viewType.DATABASEVIEW)
+		view = new CINEMA_COMPONENTS.DatabaseView(d3.select('#viewContainer').node(),currentDb, currentDbInfo.directory);
 	else if (currentView == viewType.SCATTERPLOT) {
 		//Use either an SVG or a Canvas Scatter Plot depending on pcoordType
 		if (currentPcoord == pcoordType.SVG)
@@ -484,6 +498,14 @@ function changeView(type) {
 			if(typeof imagespreadOptionsState !== "undefined") {
 				view.setOptionsData(imagespreadOptionsState);
 			}
+		}
+		else if(currentView == viewType.DATABASEVIEW){
+			view = new CINEMA_COMPONENTS.DatabaseView(d3.select('#viewContainer').node(),currentDb, currentDbInfo.directory);
+			//change selected tab
+			d3.select('#DatabaseTab').attr('selected','selected');
+			d3.select('#imageSpreadTab').attr('selected','default');
+			d3.select('#scatterPlotTab').attr('selected','default');
+			d3.select('#linechartChartTab').attr('selected','default');
 		}
 		//Build ScatterPlot if Scatter Plot tab is selected
 		else if (currentView == viewType.SCATTERPLOT) {
