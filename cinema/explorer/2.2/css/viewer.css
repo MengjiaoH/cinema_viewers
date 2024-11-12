@@ -56,7 +56,7 @@ body {
 	margin: initial;
 }
 
-#databaseControls,
+#databaseControls, #databaseQueries, #SelectQueries,
 #axisOrderPanel {
 	display: inline-block;
 	margin-left: 40px;

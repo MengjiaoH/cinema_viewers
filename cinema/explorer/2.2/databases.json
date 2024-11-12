@@ -4,6 +4,16 @@
 		"directory" : "data/sphere.cdb"
 	},
 	{
+		"name" : "HACC Largest 5 Halos",
+		"directory" : "data/3A_Largest5.cdb",
+		"query": {
+			"FSN": [0.2, 0.21], 
+			"halo_rank": [0, 0], 
+			"phi": [0, 0], 
+			"theta": [0, 0]
+		}
+	},
+	{
 		"name" : "Sphere Multi-Image",
 		"directory" : "data/sphere_multi-image.cdb"
 	},

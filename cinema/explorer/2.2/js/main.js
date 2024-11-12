@@ -53,7 +53,8 @@ var query; //The component for querying results
 var viewType = Object.freeze({
 	IMAGESPREAD: 0,
 	SCATTERPLOT: 1,
-	LINECHART: 2
+	LINECHART: 2,
+	DATABASEVIEW: 3
 });
 var currentView = viewType.IMAGESPREAD;
 
@@ -157,6 +158,71 @@ window.onresize = function(){
 		view.updateSize();
 	}
 };
+
+// Edited: Mengjiao 
+/**
+ * Load DSI Database 
+ */
+const uploadButton = document.getElementById('loadDSIDatabaseButton');
+	const inputElement = document.getElementById('fileInput');
+	uploadButton.addEventListener('click', () => {
+		fileInput.click();
+	});
+	
+inputElement.addEventListener('change', async function(event) {
+	const file = event.target.files[0];
+	const SQL = await initSQL();
+	const reader = new FileReader();
+	reader.onload = (e) => {
+		// const data = e.target.result;
+		const Uints = new Uint8Array(reader.result);
+		const db = new SQL.Database(Uints);
+		// Execute SQL queries
+		// const result = db.exec('SELECT * FROM visualization');
+		currentDb.loadDSIDatabaseFunc(db);
+		// console.log(result)
+		// console.log(db);
+	};
+	reader.readAsArrayBuffer(file);
+})
+
+function initSQL(){
+	const SQL = initSqlJs({ locateFile: () => '/sql-wasm.wasm' });
+	return SQL;
+}
+
+const textArea = document.getElementById("queryInput");
+textArea.addEventListener("keydown", (event) =>{
+	if(event.key == 'Enter'){
+		// Prevent the default behavior of Enter (newline)
+		event.preventDefault(); 
+
+		// Get the value of the textarea
+		const text = textArea.value;
+		currentDb.addQuery(text);
+		currentDb.getQueryResults(text);
+		// add the new query to select options
+		const selectElement = document.getElementById("queries");
+		const newOption = document.createElement("option");
+		newOption.value = String(currentDb.queries.length + 2); 
+		newOption.text = text;
+		selectElement.appendChild(newOption);
+		selectElement.value = newOption.value;
+		pcoord.updateData();
+	}
+
+});
+
+const selectElement = document.getElementById("queries");
+selectElement.addEventListener("change", function(){
+	const selectedValue = parseInt(this.value); 
+	// Do something with the selected value
+	console.log("Selected value:", selectedValue);
+	currentDb.getQueryResults(currentDb.queries[selectedValue-1])
+	pcoord.updateData();
+})
+
+// End of Edited by Mengjiao
 
 //*********
 //END MAIN THREAD

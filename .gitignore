@@ -5,3 +5,5 @@ databases_toIgnore.json
 getBuild.sh
 copyCSS.sh
 test/
+data/3A_Largest5.cdb
+.vscode/

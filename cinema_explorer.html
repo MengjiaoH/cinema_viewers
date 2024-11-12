@@ -60,10 +60,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<script src="cinema/lib/d3.v5.min.js"></script>
     -->
     <!-- components -->
-    <!--
-	<link rel='stylesheet' href='cinema/lib/CinemaComponents.v2.7.1.min.css'>
-	<script src='cinema/lib/CinemaComponents.v2.7.1.min.js'></script>
-    -->
+   
     <!-- vtk -->
     <script type="text/javascript" src="https://unpkg.com/vtk.js"></script>
     <!-- End:   Cinema Local File Install -->
@@ -71,9 +68,13 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Begin: Cinema External Access Install -->
     <!-- d3 -->
 	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src='cinema/lib/sql-wasm.js'></script>
+	<script src='cinema/lib/sql-asm.js'></script>
+	<link rel='stylesheet' href='cinema/lib/CinemaComponents.v2.7.1.min.css'>
+	<script src='cinema/lib/CinemaComponents.v2.7.1.min.js'></script>
     <!-- components -->
-	<link rel='stylesheet' href='https://cinemascience.github.io/release/CinemaComponents.v2.7.1.min.css'>
-	<script src='https://cinemascience.github.io/release/CinemaComponents.v2.7.1.min.js'></script>
+	<!-- <link rel='stylesheet' href='https://cinemascience.github.io/release/CinemaComponents.v2.7.1.min.css'>
+	<script src='https://cinemascience.github.io/release/CinemaComponents.v2.7.1.min.js'></script> -->
     <!-- vtk -->
     <script type="text/javascript" src="https://unpkg.com/vtk.js"></script>
     <!-- End:   Cinema External Access Install -->
@@ -91,6 +92,20 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				<br>
 				<select id="database"></select>
 				<button id="loadButton" onclick="load()">Load</button>
+				<button id="loadDSIDatabaseButton"">Load DSI Database</button>
+				<input id='fileInput' type='file' name="dsi_db" hidden/>
+			</div>
+			<div id="databaseQueries">
+				<span id="databaseLabel">Input Query:</span>
+				<br>
+				<textarea id="queryInput" name="query" rows="2" cols="33" placeholder="query statement..."></textarea>
+			</div>
+			<div id="SelectQueries">
+				<span id="databaseLabel">Select Queries:</span>
+				<br>
+				<select id="queries">
+					<option value="1">SELECT * FROM cdb</option>
+				</select>
 			</div>
 		</div>
 		<div id="pcoordArea">
@@ -121,6 +136,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!--"Tabs" to select which component to use as the view-->
 	<div id="tabContainer">
 		<div class="tab" id="imageSpreadTab" selected="selected" onclick="changeView(viewType.IMAGESPREAD)">Image Spread</div>
+		<div class="tab" id="DatabaseTab" selected="default" onclick="changeView(viewType.DATABASEVIEW)">Database Information</div>
 		<div class="tab" id="scatterPlotTab" selected="default" onclick="changeView(viewType.SCATTERPLOT)">Scatter Plot</div>
 		<div class="tab" id="linechartChartTab" selected="default" onclick="changeView(viewType.LINECHART)">Line Chart</div>
 	</div>
