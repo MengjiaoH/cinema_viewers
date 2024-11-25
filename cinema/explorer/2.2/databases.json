@@ -1,24 +1,24 @@
 [
 	{
+		"name" : "HACC Largest Big Halos",
+		"directory" : "data/3A_BigHalos_Largest.cdb",
+		"init_data_filter": {
+			"FSN": [0.21, 0.2227], 
+			"phi": [0, 0], 
+			"theta": [0, 0]
+		},
+		"query":["SELECT * FROM cdb WHERE halo_rank = 0 AND FSN = 0.2226 AND theta = 0 AND phi = 0", 
+				 "SELECT * FROM cdb WHERE halo_rank = 0 AND ts = 624 AND theta = 0 AND phi = 0", 
+				 "SELECT * FROM cdb WHERE FSN = 0.4032 AND ts = 185 AND theta = 0 AND phi = 0 ORDER BY halo_count DESC",
+				 "SELECT * FROM cdb WHERE ts BETWEEN 185 AND 224 AND theta = 0 AND phi = 0",
+				 "SELECT * FROM cdb"]
+	},
+	{
 		"name" : "sphere",
 		"directory" : "data/sphere.cdb",
 		"query": ["SELECT * FROM cdb"]
 	},
-	{
-		"name" : "HACC Largest 5 Halos",
-		"directory" : "data/3A_Largest5.cdb",
-		"init_data_filter": {
-			"FSN": [0.21, 0.2227], 
-			"halo_rank": [0, 0], 
-			"phi": [0, 0], 
-			"theta": [0, 0]
-		},
-		"query":["SELECT * FROM cdb WHERE halo_rank = 0 AND FSN = 0.2226", 
-				"SELECT * FROM cdb WHERE halo_rank = 0 AND ts = 122", 
-				"SELECT * FROM cdb WHERE ts BETWEEN 153 AND 224",
-				"SELECT * FROM cdb WHERE FSN = 0.4032 ORDER BY halo_count DESC",
-				"SELECT * FROM cdb"]
-	},
+
 	{
 		"name" : "Sphere Multi-Image",
 		"directory" : "data/sphere_multi-image.cdb"

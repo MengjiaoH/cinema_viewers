@@ -208,6 +208,7 @@ textArea.addEventListener("keydown", (event) =>{
 		newOption.text = text;
 		selectElement.appendChild(newOption);
 		selectElement.value = newOption.value;
+		currentDb.setCurrentQueryText(text);
 		pcoord.updateData();
 	}
 

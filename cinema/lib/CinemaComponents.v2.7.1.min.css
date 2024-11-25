@@ -54,6 +54,7 @@
 	border: 2px solid black;
 	line-height: 0;
 	cursor: pointer;
+	text-align: center;  
 }
 
 .CINEMA_COMPONENT.IMAGE_SPREAD .fileDisplay .display.image:hover {
@@ -62,8 +63,13 @@
 }
 
 .CINEMA_COMPONENT.IMAGE_SPREAD .fileDisplay .displayLabel {
-	font-size: 12px;
+	font-size: 15px;
 	text-align: center;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;  
+	overflow: hidden;
+	
 }
 
 .CINEMA_COMPONENT.IMAGE_SPREAD .fileDisplay .display.text {
