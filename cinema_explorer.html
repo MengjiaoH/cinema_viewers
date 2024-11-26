@@ -90,8 +90,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<div id="databaseControls">
 				<span id="databaseLabel">Select Database:</span>
 				<br>
-				<select id="database"></select>
-				<!-- <button id="loadButton" onclick="load()">Load</button> -->
+				<select id="database" onchange="changeOptions()"></select>
+				<!-- <button id="loadButton" onclick="load()">Load CSV</button> -->
 				<button id="loadDSIDatabaseButton"">Load DSI Database</button>
 				<input id='fileInput' type='file' name="dsi_db" hidden/>
 			</div>

@@ -243,7 +243,9 @@ function load_databases() {
             });
     load();
 }
-
+function changeOptions(){
+	load();
+}
 /**
  * Set the current database to the one selected in the database selection
  * and load it, rebuilding all components
