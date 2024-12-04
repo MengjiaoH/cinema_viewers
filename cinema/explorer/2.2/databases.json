@@ -1,8 +1,50 @@
 [
+
 	{
 		"name" : "sphere",
 		"directory" : "data/sphere.cdb",
 		"query": ["SELECT * FROM cdb"]
+	},
+	{
+		"name": "2PARAM_Step_624_Halo_5",
+		"directory" : "data/2PARAM_Step_624_Halo_5.cdb",
+		"init_data_filter": {
+			"phi": [0, 0],
+			"theta": [0, 0]
+		},
+		"query":["SELECT * FROM cdb WHERE theta = 0 AND phi = 0", 
+				 "SELECT * FROM cdb"
+				]
+	},
+	{
+		"name": "2PARAM_Step_624_HaloGalaxy_5",
+		"directory" : "data/2PARAM_Step_624_HaloGalaxy_5.cdb",
+		"init_data_filter": {
+			"phi": [0, 0],
+			"theta": [0, 0]
+		},
+		"query":["SELECT * FROM cdb WHERE theta = 0 AND phi = 0", 
+				 "SELECT * FROM cdb"]
+	},
+	{
+		"name": "2PARAM_Step_624_HaloGalaxy_5_Zoom",
+		"directory" : "data/2PARAM_Step_624_HaloGalaxy_5_Zoom.cdb",
+		"init_data_filter": {
+			"phi": [0, 0],
+			"theta": [0, 0]
+		},
+		"query":["SELECT * FROM cdb WHERE theta = 0 AND phi = 0",
+				 "SELECT * FROM cdb"]
+	},
+	{
+		"name": "2PARAM_Step_624_HaloGalaxy_5_MultiImages",
+		"directory" : "data/2PARAM_Step_624_HaloGalaxy_5_Overview_Zoom.cdb",
+		"init_data_filter": {
+			"phi": [0, 0],
+			"theta": [0, 0]
+		},
+		"query":["SELECT * FROM cdb WHERE theta = 0 AND phi = 0", 
+				 "SELECT * FROM cdb"]
 	},
 
 	{
