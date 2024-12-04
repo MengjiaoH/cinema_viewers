@@ -62,13 +62,14 @@
 	box-shadow: 1px 1px 2px black;
 }
 
-.CINEMA_COMPONENT.IMAGE_SPREAD .fileDisplay .displayLabel {
+.CINEMA_COMPONENT.IMAGE_SPREAD .dataDisplay .displayLabel {
 	font-size: 15px;
-	text-align: center;
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;  
-	overflow: hidden;
+	display: flex; /* Use flexbox */
+    justify-content: center; /* Horizontally center the text */
+    align-items: center; /* Vertically center the text */
+    text-align: center; /* Fallback for multi-line text */
+    height: 100%; /* Ensure the div takes up the expected space */
+    width: 100%; /* Optional, to make it span the container */
 	
 }
 
